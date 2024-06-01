@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var uniqueValidator = require("mongoose-unique-validator");
 var slug = require("slug");
 var User = mongoose.model("User");
-import placeholder from 'backend/models/placeholder.png'
+var placeholder = '/placeholder.png'
 
 var ItemSchema = new mongoose.Schema(
   {
