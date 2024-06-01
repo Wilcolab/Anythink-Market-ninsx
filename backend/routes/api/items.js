@@ -5,6 +5,7 @@ var Comment = mongoose.model("Comment");
 var User = mongoose.model("User");
 var auth = require("../auth");
 const { sendEvent } = require("../../lib/event");
+import placeholder from 'backend/routes/api/placeholder.png'
 
 // Preload item objects on routes with ':item'
 router.param("item", function(req, res, next, slug) {
@@ -164,8 +165,8 @@ router.get("/:item", auth.optional, function(req, res, next) {
   ])
     .then(function(results) {
       var user = results[0];
-
-      return res.json({ item: req.item.toJSONFor(user) });
+      const itemWithImage = populatedItem.image? populatedItem : {...populatedItem, image: placeholder};
+      return res.json({ item: itemWithImage.toJSONFor(user) });
     })
     .catch(next);
 });
